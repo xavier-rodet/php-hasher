@@ -1,5 +1,5 @@
 # php-hasher
-A simple PHP Hasher to ensure data validity received by a client.
+A simple PHP Hasher to ensure data validity received from a client.
 
 ## Usage
 
