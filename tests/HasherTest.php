@@ -9,7 +9,7 @@ class HasherTest extends TestCase
 {
     protected $hasher;
 
-    use AccessProtected;
+    use AccessProtectedTrait;
 
     public function setUp() : void
     {
