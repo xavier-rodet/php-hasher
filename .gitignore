@@ -1,3 +1,4 @@
 /vendor/
 .idea
-.phpunit.*
+.phpunit*
+.php_cs.cache

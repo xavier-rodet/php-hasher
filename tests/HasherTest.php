@@ -1,17 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Snailweb\Utils\Hasher\Tests;
 
 use PHPUnit\Framework\TestCase;
 use Snailweb\Utils\Hasher;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class HasherTest extends TestCase
 {
+    use AccessProtectedTrait;
     protected $hasher;
 
-    use AccessProtectedTrait;
-
-    public function setUp() : void
+    public function setUp(): void
     {
         $this->hasher = new Hasher('s3cr3t', 'pr3f1x', 'suff1x');
     }
@@ -25,6 +30,9 @@ class HasherTest extends TestCase
 
     /**
      * @dataProvider validHashes
+     *
+     * @param mixed $data
+     * @param mixed $hash
      */
     public function testHash($data, $hash)
     {
@@ -34,6 +42,9 @@ class HasherTest extends TestCase
 
     /**
      * @dataProvider validHashes
+     *
+     * @param mixed $data
+     * @param mixed $hash
      */
     public function testCheckSumTrue($data, $hash)
     {
@@ -43,6 +54,9 @@ class HasherTest extends TestCase
 
     /**
      * @dataProvider invalidHashes
+     *
+     * @param mixed $data
+     * @param mixed $hash
      */
     public function testCheckSumFalse($data, $hash)
     {
@@ -67,6 +81,4 @@ class HasherTest extends TestCase
             ['{"This is": "JSON"}', '0495a45fd9fdf753fb3097db18c7883cee32f703314595613aa6e72082ada981'],
         ];
     }
-
-
 }
