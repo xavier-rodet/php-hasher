@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Snailweb\Utils;
 
-class Hasher
+final class Hasher
 {
-    protected $secret;
-    protected $algo;
-    protected $prefix;
-    protected $suffix;
+    private $secret;
+    private $algo;
+    private $prefix;
+    private $suffix;
 
     /**
      * Hasher constructor.
@@ -59,7 +59,7 @@ class Hasher
      *
      * @return string
      */
-    protected function alterData(string $data): string
+    private function alterData(string $data): string
     {
         return sprintf('_%s_%s_%s_', $this->prefix, $data, $this->suffix);
     }

@@ -9,11 +9,9 @@ use Snailweb\Utils\Hasher;
 
 /**
  * @internal
- * @coversNothing
  */
 class HasherTest extends TestCase
 {
-    use AccessProtectedTrait;
     protected $hasher;
 
     public function setUp(): void
@@ -21,23 +19,16 @@ class HasherTest extends TestCase
         $this->hasher = new Hasher('s3cr3t', 'pr3f1x', 'suff1x');
     }
 
-    public function testAlterData()
-    {
-        $data = 'data';
-        $alteredData = $this->invokeMethod($this->hasher, 'alterData', [$data]);
-        $this->assertNotSame($alteredData, $data);
-    }
-
     /**
      * @dataProvider validHashes
      *
      * @param mixed $data
-     * @param mixed $hash
+     * @param mixed $expectedHash
      */
-    public function testHash($data, $hash)
+    public function testHash($data, $expectedHash)
     {
-        $hash_test = $this->hasher->hash($data);
-        $this->assertSame($hash, $hash_test);
+        $hash = $this->hasher->hash($data);
+        $this->assertSame($expectedHash, $hash);
     }
 
     /**
